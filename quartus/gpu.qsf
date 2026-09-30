@@ -1,0 +1,39 @@
+# =============================================================================
+# gpu.qsf — Quartus Settings File for DE0-Nano GPU
+# =============================================================================
+
+# Device
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE22F17C6
+set_global_assignment -name TOP_LEVEL_ENTITY top_level
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "18.1"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "2026-09-30"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.1"
+
+# Project settings
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+
+# Compilation settings
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
+set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_DATA0_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_DATA1_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_FLASH_NCE_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_DCLK_AFTER_CONFIGURATION "USE AS REGULAR IO"
+
+# SystemVerilog source files
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/gpu_pkg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/top_level.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/vga_controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/vga_test_pattern.sv
+set_global_assignment -name VERILOG_FILE ../rtl/pll_25mhz.v
+
+# Timing constraints
+set_global_assignment -name SDC_FILE gpu.sdc
+
+# Source pin assignments
+source de0nano_pins.tcl
